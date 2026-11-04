@@ -1,0 +1,20 @@
+name: tests
+  on:
+    workflow_dispatch:
+      inputs:
+        run_id:
+          required: false
+        execution:
+          required: false
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: Run tests
+          run: echo "Run your tests here and write results/junit.xml"
+        - uses: actions/upload-artifact@v4
+          if: always()
+          with:
+            name: test-results
+            path: results/
