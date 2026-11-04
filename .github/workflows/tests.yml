@@ -1,20 +1,35 @@
-name: tests
-  on:
-    workflow_dispatch:
-      inputs:
-        run_id:
-          required: false
-        execution:
-          required: false
-  jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - name: Run tests
-          run: echo "Run your tests here and write results/junit.xml"
-        - uses: actions/upload-artifact@v4
-          if: always()
-          with:
-            name: test-results
-            path: results/
+name: Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Test run ID"
+        required: false
+        type: string
+      execution:
+        description: "Test execution details"
+        required: false
+        type: string
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: |
+          mkdir -p results
+          echo "Run your tests here and generate results/junit.xml"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: results/
+          if-no-files-found: warn
