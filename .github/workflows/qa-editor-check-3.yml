@@ -1,0 +1,10 @@
+# Added by a test of the workflow editor. Safe to delete.
+name: QA editor check 3
+on:
+  workflow_dispatch:
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo hello
