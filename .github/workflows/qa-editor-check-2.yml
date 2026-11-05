@@ -1,16 +1,27 @@
 # Added by a test of the workflow editor. Safe to delete.
-# Saved from the Edit file dialog.
 name: QA editor check 2
 on:
   workflow_dispatch:
+    inputs:
+      test_cases:
+        required: false
+        type: string
+      test_plan:
+        required: false
+        type: string
+      test_set:
+        required: false
+        type: string
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo hello
+      - name: Show the picked tests
+        run: echo "${{ inputs.test_cases }} ${{ inputs.test_plan }} ${{ inputs.test_set }}"
       - name: Wait a little
         run: sleep 40
+      - name: A step that fails
+        run: exit 1
   second-job:
     runs-on: ubuntu-latest
     needs: first-job
