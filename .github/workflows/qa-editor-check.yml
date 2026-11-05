@@ -1,4 +1,5 @@
 # Added by a test of the workflow editor. Safe to delete.
+# Saved from the Edit file dialog.
 name: QA editor check
 on:
   workflow_dispatch:
@@ -16,4 +17,3 @@ jobs:
     steps:
       - name: Say goodbye
         run: echo goodbye
-# Changed elsewhere while the editor was open.
