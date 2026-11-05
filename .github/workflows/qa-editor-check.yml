@@ -16,3 +16,4 @@ jobs:
     steps:
       - name: Say goodbye
         run: echo goodbye
+# Changed elsewhere while the editor was open.
